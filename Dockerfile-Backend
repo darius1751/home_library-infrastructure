@@ -1,0 +1,7 @@
+FROM node:18-alpine
+RUN cd /var
+COPY ./backend /var/backend
+WORKDIR /var/backend
+RUN npm i
+EXPOSE 4000
+CMD [ "npm","run", "dev"]
