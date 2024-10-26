@@ -11,6 +11,10 @@ services:
       - ./data:/data/db
     networks:
       - db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: homeLibrary
   backend:
     build:
       dockerfile: ./Dockerfile-Backend
@@ -19,11 +23,8 @@ services:
       - 4000
     ports:
       - 4000:4000
-    depends_on: 
+    depends_on:
       - db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
       - ./backend:/var/backend
     networks:
