@@ -15,35 +15,3 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: homeLibrary
-  backend:
-    build:
-      dockerfile: ./Dockerfile-Backend
-    container_name: server
-    expose:
-      - 4000
-    ports:
-      - 4000:4000
-    depends_on:
-      - db
-    volumes:
-      - ./backend:/var/backend
-    networks:
-      - server
-      - db
-  frontend:
-    build:
-      dockerfile: ./Dockerfile-Frontend
-    container_name: client
-    ports:
-      - 3000:3000
-    depends_on: 
-      - backend
-    volumes:
-      - ./frontend:/var/frontend
-    networks:
-      - client
-      - server
-networks:
-  server:
-  client:
-  db:
